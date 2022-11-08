@@ -72,3 +72,15 @@ def minigame(lettreChoisie):
     #ecrire un message quand la lettre est la bonne 
     print("bravo")
     return None
+
+
+tableau = [1,25,24,36,41,1,897]
+
+#pour recuperer la valeur 36, je prends dans le tableau l'index 3
+print(tableau[3]) #affiche 36
+
+len(tableau) #renvoie la longueur du tableau
+
+nom = "pichard "
+prenom = "antoine "
+identite = nom + prenom #renvoie "pichard antoine "
