@@ -10,7 +10,7 @@ def elementCpu(alea): #renvoie un element aleatoire pour le CPU
     return element
 
 
-def result(choix, elementCpu(alea)): #renvoie le resulat du round
+def result(choix, elementCpu): #renvoie le resulat du round
     #resulat pour joueur avec ciseau
     if choix == "ciseau":
         if elementCpu == "ciseau":
