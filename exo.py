@@ -26,14 +26,16 @@ def divide(x,y):
         #retourner la division de x par y si y n'est pas egal a 0
         return x / y
     else:
-        #retourner un message d'erreur car on ne divise pas par 0
-        return "error"
+        #sinon retourner un message d'erreur car on ne divise pas par 0
+        print("on divise pas par 0")
+        return None
 
 def modulo(x,y):
     if x != 0 :
         return x % y
     else:
-        return "error"
+        print("on divise pas par 0")
+        return None
 
 def CalculSalaireParSeconde(SalaireHoraire, HeureParJourOuvrable,nb_JourOuvrable):
     #Assigner a salaire annuel, le salaire par nombre d'heure travaillé par an
@@ -43,11 +45,11 @@ def CalculSalaireParSeconde(SalaireHoraire, HeureParJourOuvrable,nb_JourOuvrable
     #retourner le salaire Annuel divisé par le nombre de seconde par An
     return salaireAnnuel / nombreDeSecondeParAn
 
-def CalculSalaireNet(SalaireBrut, coeff):
+def CalculSalaireNet(salaireBrut, coeff):
     #Calculer puis Assigner a taxe, le montant des taxes a retirer
-    taxe = SalaireBrut * (coeff / 100)
+    taxe = salaireBrut * (coeff / 100)
     #retourner le salaire net final
-    return salaireNet - taxe
+    return salaireBrut - taxe
 
 
 def CalculSalaire(SalaireBrut, public):
@@ -59,3 +61,14 @@ def CalculSalaire(SalaireBrut, public):
     else:
         #alors je retourne le salaire brut -23% de taxes
         return CalculSalaireNet(SalaireBrut, 23)
+
+def minigame(lettreChoisie):
+    #asssigner a lettre, une lettre aleatoire avec la fonction input()
+    lettre = input()
+    #choissir une autre lettre et reessayer tant que la lettre est mauvaise
+    while lettre != lettreChoisie :
+        print("mauvais caractere")
+        lettre = input()
+    #ecrire un message quand la lettre est la bonne 
+    print("bravo")
+    return None
