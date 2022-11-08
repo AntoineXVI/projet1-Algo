@@ -84,3 +84,24 @@ len(tableau) #renvoie la longueur du tableau
 nom = "pichard "
 prenom = "antoine "
 identite = nom + prenom #renvoie "pichard antoine "
+
+'''ex1 
+faire une fonction qui concatene 2 chaines de caract, les separants par des virgules
+
+ex2
+faire une fonction qui itere sur tous les index d'un tableau renvoyant une chaine de caractere avec
+l'ensemble des occurences d'un chiffre ex.general:
+pour tableau = [0,1,1,1,0,1,1,0,1]
+la fonction(tableau, 0) doit renvoyer "0, 4, 7". n'hesitez pas a implementer la premiere fonction'''
+
+def concat(phrase1, phrase2): #renvoie une phrase concatené a partir de 2 phrases
+    phraseConcat = phrase1 + ", " + phrase2
+    #renvoie la phrase concatené
+    return phraseConcat 
+
+def chaineOcuurences(tableau,occurence): #renvoie une chaine str avec toute les occurences choisie
+    phrase = ""
+    for k in range(len(tableau - 1)):
+        if occurence == tableau[k]:
+            concat(phrase,tableau[k])
+    return phrase
