@@ -105,13 +105,63 @@ def concat(phrase1, phrase2): #renvoie une chaine concatené a partir de 2 chain
 def chaineOcuurences(tableau, occurence): #renvoie une chaine str avec toute les occurences choisie
     #initailisation de la chaine 
     phrase = ""
+    #initialiser isFirst a True
+    isFirst = True
     #tester toutes les occurences du tableau avec une boucle  
     for k in range(len(tableau)):
         #si l'occurence choisie est egale a l'element du tableau
         if occurence == tableau[k]:
-            #alors on le concatene avec la phrase qui liste les index du tableau
-            phrase = concat(k, phrase)
+            if isFirst == True:
+                ##assigner a chainerRetour la valeur de i
+                phrase = k
+                #changer isFirst a faux
+                isFirst = False
+            else:
+                #alors on le concatene avec la phrase qui liste les index du tableau
+                phrase = concat(phrase, k)
     #retourner la phrase complete
     return phrase
 
-print(chaineOcuurences([0, 0, 1, 2, 3], 0)) #renvoie "1, 0,"
+print(chaineOcuurences([0, 0, 1, 2, 3, 0], 0)) #renvoie "0, 1, 5"
+
+def findIndexes(tableau, x): #renvoie une chaine str avec toute les occurences choisie
+    #initialiser i a 0
+    i = 0
+    #initialiser isFirst a True
+    isFirst = True
+    #initialiser chaine retour a une chaine str vide
+    chaineRetour = ""
+    #tant que i est plus petit que le retour de l'excecution de la fonction len avec comme parametre tableau
+    while i < len(tableau):
+        #assigner a selected la valeur du tabeau d'indice i 
+        selected = tableau[i]
+        #si selected est egale a l'occurence recherché
+        if selected == x:
+            #si selected est la premeiere valeur
+            if isFirst == True:
+                ##assigner a chainerRetour la valeur de i
+                chaineRetour = i
+                #changer isFirst a faux
+                isFirst = False
+            else:
+                #assigner a chaineRetour, la concatenation de la chaineRetour et de l'indice i grace a la fonction concat deja crée
+                chaineRetour = concat(chaineRetour, i)
+        #incrementer i
+        i = i + 1
+    #retourner la chaine avec la liste d'occurences complete
+    return chaineRetour
+
+print(findIndexes([0, 0, 1, 2, 3, 0], 0))
+
+def Fibo(x,xmax): #renvoie une chaine de la suite de fibonacci jusqu'a la valeur xmax atteinte, avec une valeur choisie en parametre
+#initialiser la chaine a "0"
+chaineFibo = "0"
+#initialiser i a 0
+i = 0
+chaineFibo = concat(chaineFibo,x)
+while x < xmax:
+    
+
+return chaineFibo
+
+
