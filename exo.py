@@ -1,3 +1,4 @@
+'''
 print("hello world")
 
 def retournerSixPlusTrois():
@@ -7,7 +8,7 @@ def retournerSixPlusX(x):
     return 6 + x
     
 
-print("qui vole un " + retournerSixPlusX(3) + "vole un boeuf ")
+print("qui vole un " + str(retournerSixPlusX(3)) + "vole un boeuf ")
 
 def add(x,y):
     #retourner la somme de x et y
@@ -84,6 +85,7 @@ len(tableau) #renvoie la longueur du tableau
 nom = "pichard "
 prenom = "antoine "
 identite = nom + prenom #renvoie "pichard antoine "
+'''
 
 '''ex1 
 faire une fonction qui concatene 2 chaines de caract, les separants par des virgules
@@ -94,14 +96,22 @@ l'ensemble des occurences d'un chiffre ex.general:
 pour tableau = [0,1,1,1,0,1,1,0,1]
 la fonction(tableau, 0) doit renvoyer "0, 4, 7". n'hesitez pas a implementer la premiere fonction'''
 
-def concat(phrase1, phrase2): #renvoie une phrase concatené a partir de 2 phrases
-    phraseConcat = phrase1 + ", " + phrase2
+def concat(phrase1, phrase2): #renvoie une chaine concatené a partir de 2 chaines
+    #assigner a phraseConcat la concatenation des 2 chaines séparé par une virgule
+    phraseConcat = str(phrase1) + ", " + str(phrase2)
     #renvoie la phrase concatené
     return phraseConcat 
 
-def chaineOcuurences(tableau,occurence): #renvoie une chaine str avec toute les occurences choisie
+def chaineOcuurences(tableau, occurence): #renvoie une chaine str avec toute les occurences choisie
+    #initailisation de la chaine 
     phrase = ""
-    for k in range(len(tableau - 1)):
+    #tester toutes les occurences du tableau avec une boucle  
+    for k in range(len(tableau)):
+        #si l'occurence choisie est egale a l'element du tableau
         if occurence == tableau[k]:
-            concat(phrase,tableau[k])
+            #alors on le concatene avec la phrase qui liste les index du tableau
+            phrase = concat(k, phrase)
+    #retourner la phrase complete
     return phrase
+
+print(chaineOcuurences([0, 0, 1, 2, 3], 0)) #renvoie "1, 0,"
