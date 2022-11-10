@@ -151,17 +151,20 @@ def findIndexes(tableau, x): #renvoie une chaine str avec toute les occurences c
     #retourner la chaine avec la liste d'occurences complete
     return chaineRetour
 
-print(findIndexes([0, 0, 1, 2, 3, 0], 0))
+#print(findIndexes([0, 0, 1, 2, 3, 0], 0))
 
 def Fibo(x,xmax): #renvoie une chaine de la suite de fibonacci jusqu'a la valeur xmax atteinte, avec une valeur choisie en parametre
-#initialiser la chaine a "0"
-chaineFibo = "0"
-#initialiser i a 0
-i = 0
-chaineFibo = concat(chaineFibo,x)
-while x < xmax:
-    
+    #initialiser la chaine a "0"
+    chaineFibo = [0, x]
+    #initialiser i a 0
+    i = 1
+    #tant que x est inferieur a la valeur xmax choisie
+    while i <= xmax:
+        #alors on ajoute a la liste le dernier et l'avant dernier terme de la liste
+        chaineFibo.append(chaineFibo[i] + chaineFibo[i - 1])
+        #on incremente i
+        i = i + 1
+    return chaineFibo
 
-return chaineFibo
 
-
+print(Fibo(5, 10))

@@ -1,3 +1,4 @@
+
 #importer la fonction random
 
 #faire un fonction renvoie un element aleatoire pour choisir l'element utiliser par le CPU avec comme parametre la variable alea
