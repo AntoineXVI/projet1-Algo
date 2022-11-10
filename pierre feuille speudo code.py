@@ -49,5 +49,7 @@
     #sinon si le retour de l'excecution de la fonction result avec comme parametre choix et elementCpu(alea) est egal a egalité
         #ajouter 1 au troisieme index de la liste score
         #afficher le score
-    #changer la variable jouer, au str du retour de l'excecution de la fonction input , avec comme parametre "souhaite tu rejouer ( envoie True(oui) ou False(non)?"
+    #assigner a la variable rejouer, le str du retour de l'excecution de la fonction input , avec comme parametre "souhaite tu rejouer ( envoie True(oui) ou False(non)?"
+    #si la variable rejouer est egale a "false" ou si la variable rejouer est egale a "False" 
+        #alors changer la variable jouer a False
 #afficher le score a la fin de la partie

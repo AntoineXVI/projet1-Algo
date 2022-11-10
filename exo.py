@@ -1,3 +1,5 @@
+import random
+
 print("hello world")
 
 def retournerSixPlusTrois():
@@ -143,4 +145,3 @@ def Fibo(x,xmax): #renvoie une liste de la suite de fibonacci jusqu'a la valeur 
     return chaineFibo
 
 print(Fibo(5, 10))
-
