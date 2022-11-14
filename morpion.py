@@ -2,17 +2,18 @@
 import random
 
 def morpionVide(longueur):
-    #initialise les tableaux de coordonnées x et y vide
-    coord_x = ['Null'] * longueur
-    coord_y = ['Null'] * longueur
-    #pour i allant de 0 jusqu'a la longueur du tableau
+    #initialise la liste coord_x vide
+    coord_x = []
+    #pour i allant de 0 a longeur 
     for i in range(longueur):
-        #assigner a chaque element de la liste x une liste y
-        coord_x[i] = coord_y
-        #pour i allant de 0 jusqu'a la longueur du tableau
+        #ajouter une liste "N" multiplié par la longueur
+        coord_x.append(["N"] * longueur)
+    #pour k allant de 0 jusqu'a la longueur du tableau
     for k in range(longueur): 
         #afficher le tableau
         print(coord_x[k])
+
+morpionVide(3)
 
 def afficherMorpion(coord_x, longueur):
       for k in range(longueur): 
@@ -26,7 +27,7 @@ def afficherMorpion(coord_x, longueur):
     else:
         print("tu joues en deuxime")
     return None
-'''
+
 
 #initialise le score
 score = [0, 0, 0] 
@@ -39,7 +40,4 @@ alea = random.randint(1,2)
 while fin == False:
      #assigner a choix, la chaine choisie par l'utilisateur
     choix = (input("entrez une case pour jouer (de la case 1 a la case 9)\n"))
-
-
-
- 
+'''
