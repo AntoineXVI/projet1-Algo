@@ -57,13 +57,9 @@ def trouverCoord(choix):
     
 
 
-
-'''
 def isWin(tab, choix, longueur):
     for k in range(longueur):
         for l in range(longueur):
-            if tab[] == choix:
-'''
 
 
 '''
