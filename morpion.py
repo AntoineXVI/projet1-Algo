@@ -57,9 +57,31 @@ def trouverCoord(choix):
     
 
 
-def isWin(tab, choix, longueur):
-    for k in range(longueur):
-        for l in range(longueur):
+def isWin(tab, xChoix, yChoix):
+    #test en ligne
+    if yChoix == 0:
+        if (tab[xChoix][yChoix + 1] == tab[xChoix][yChoix])and (tab[xChoix][yChoix + 2] == tab[xChoix][yChoix]) :
+            return tab[xChoix][yChoix]
+    elif yChoix == 1:
+        if (tab[xChoix][yChoix - 1] == tab[xChoix][yChoix])and (tab[xChoix][yChoix + 1] == tab[xChoix][yChoix]) :
+            return tab[xChoix][yChoix]
+    elif yChoix == 2:
+        if (tab[xChoix][yChoix - 2] == tab[xChoix][yChoix])and (tab[xChoix][yChoix - 1] == tab[xChoix][yChoix]) :
+            return tab[xChoix][yChoix]
+    #test en colonne 
+    elif xChoix == 0:
+         if (tab[xChoix + 1][yChoix] == tab[xChoix][yChoix])and (tab[xChoix + 2][yChoix] == tab[xChoix][yChoix]) :
+            return tab[xChoix][yChoix]
+    elif xChoix == 1:
+         if (tab[xChoix - 1][yChoix] == tab[xChoix][yChoix])and (tab[xChoix + 1][yChoix] == tab[xChoix][yChoix]) :
+            return tab[xChoix][yChoix]
+    elif xChoix == 2:
+         if (tab[xChoix - 2][yChoix] == tab[xChoix][yChoix])and (tab[xChoix - 1][yChoix] == tab[xChoix][yChoix]) :
+            return tab[xChoix][yChoix]
+    #test en diagonale
+
+
+
 
 
 '''
@@ -72,10 +94,14 @@ def premierJoueur(alea): #choisie qui est le premier joueur
 
 
 
-#initialise le score
-score = [0, 0, 0]
 #initalise la variable fin a False
 fin = False
+#initalise la variable WinCpu a False
+winCpu = False
+#initalise la variable winUser a False
+winUser = False
+#initalise la variable countTour a 0
+countTour = 0
 #initialise la liste tab vide
 tab = []
 morpionVide(tab, 3)
@@ -84,8 +110,8 @@ afficherMorpion(tab, 3)
 alea = random.randint(1,2)
 #premierJoueur(alea)
 print("tu joues les X")
-#tant que jouer est egale a vrai
-while fin == False:
+#tant que WinCpu et winUser sont egaux a faux
+while winCpu == False and winUser == False:
     #assigner a choix, la chaine choisie par l'utilisateur
     choix = str(input("entrez une case (de la case 1 a la case 9)\n"))
     x,y = trouverCoord(choix)
@@ -96,14 +122,32 @@ while fin == False:
     tab[x][y] = 'X'
     print("tu as joué sur la case " + choix + "\n" )
     afficherMorpion(tab, 3)
-    print("\nau tour de l'IA\n")
+    countTour = countTour + 1
+    if countTour >= 9:
+        print("Egalité.\n")
+        break
+    print("au tour de l'IA\n")
     #assigner a alea, un nombre entre 1 et 9
     choixCpu = str(random.randint(1,9))
-    xCpu,yCpu = trouverCoord(choixCpu)
-    while (tab[xCpu][yCpu] == 'X') or (tab[xCpu][yCpu] == 'O') or trouverCoord == ValueError:
+    x,y = trouverCoord(choixCpu)
+    while (tab[x][y] == 'X') or (tab[x][y] == 'O') or trouverCoord == ValueError:
         choixCpu = str(random.randint(1,9))
-        xCpu,yCpu = trouverCoord(choixCpu)
-    tab[xCpu][yCpu] = 'O'
+        x,y = trouverCoord(choixCpu)
+    tab[x][y] = 'O'
     print("Le CPU a joué sur la case " + choixCpu + "\n" )
     afficherMorpion(tab, 3)
-    print("\ntour suivant\n")
+    countTour = countTour + 1
+    if isWin(tab, x, y) == 'X':
+        winUser == True
+        print("Bravo, tu as gagné\n")
+        break
+    elif isWin(tab, x, y) == 'O':
+        winCpu == True
+        print("Dommage, tu as perdu\n")
+        break
+    else:
+        if countTour >= 9:
+            print("Egalité.\n")
+            break
+        print("tour suivant\n")
+print("Fin de Partie\n")
