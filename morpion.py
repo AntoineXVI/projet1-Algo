@@ -69,17 +69,20 @@ def isWin(tab, xChoix, yChoix):
         if (tab[xChoix][yChoix - 2] == tab[xChoix][yChoix])and (tab[xChoix][yChoix - 1] == tab[xChoix][yChoix]) :
             return tab[xChoix][yChoix]
     #test en colonne 
-    elif xChoix == 0:
-         if (tab[xChoix + 1][yChoix] == tab[xChoix][yChoix])and (tab[xChoix + 2][yChoix] == tab[xChoix][yChoix]) :
+    if xChoix == 0:
+        if (tab[xChoix + 1][yChoix] == tab[xChoix][yChoix])and (tab[xChoix + 2][yChoix] == tab[xChoix][yChoix]) :
             return tab[xChoix][yChoix]
     elif xChoix == 1:
-         if (tab[xChoix - 1][yChoix] == tab[xChoix][yChoix])and (tab[xChoix + 1][yChoix] == tab[xChoix][yChoix]) :
+        if (tab[xChoix - 1][yChoix ] == tab[xChoix][yChoix])and (tab[xChoix  + 1][yChoix] == tab[xChoix][yChoix]) :
             return tab[xChoix][yChoix]
     elif xChoix == 2:
-         if (tab[xChoix - 2][yChoix] == tab[xChoix][yChoix])and (tab[xChoix - 1][yChoix] == tab[xChoix][yChoix]) :
+        if (tab[xChoix - 2][yChoix] == tab[xChoix][yChoix])and (tab[xChoix - 1][yChoix] == tab[xChoix][yChoix]) :
             return tab[xChoix][yChoix]
     #test en diagonale
-
+    if tab[0][0] == tab[1][1] and tab[2][2] == tab[1][1]:
+            return tab[xChoix][yChoix]
+    if tab[0][2] == tab[1][1] and tab[2][0] == tab[1][1]:
+            return tab[xChoix][yChoix]
 
 
 
@@ -123,9 +126,14 @@ while winCpu == False and winUser == False:
     print("tu as joué sur la case " + choix + "\n" )
     afficherMorpion(tab, 3)
     countTour = countTour + 1
-    if countTour >= 9:
-        print("Egalité.\n")
+    if isWin(tab, x, y) == 'X':
+        winUser == True
+        print("Bravo, tu as gagné\n")
         break
+    else:
+        if countTour >= 9:
+            print("Egalité.\n")
+            break
     print("au tour de l'IA\n")
     #assigner a alea, un nombre entre 1 et 9
     choixCpu = str(random.randint(1,9))
@@ -137,11 +145,7 @@ while winCpu == False and winUser == False:
     print("Le CPU a joué sur la case " + choixCpu + "\n" )
     afficherMorpion(tab, 3)
     countTour = countTour + 1
-    if isWin(tab, x, y) == 'X':
-        winUser == True
-        print("Bravo, tu as gagné\n")
-        break
-    elif isWin(tab, x, y) == 'O':
+    if isWin(tab, x, y) == 'O':
         winCpu == True
         print("Dommage, tu as perdu\n")
         break
