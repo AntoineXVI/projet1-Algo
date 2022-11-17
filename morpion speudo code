@@ -97,7 +97,7 @@
 #initalise la variable countTour a 0
 #initialise la liste tab vide
 #executer la fonction afficherMorpion avec comme parametre tab et 3
-#assigner a alea, un nombre entre 1 et 2
+#assigner à alea, un nombre entre 1 et 2
 #si alea est egale a 1
     #afficher "tu joue en premier"
 #sinon
@@ -108,14 +108,17 @@
 #tant que WinCpu et winUser sont egaux a faux
     #si isFirst est different de False
         #afficher "a ton tour"
-        #assigner a choix, le str du retour de la fonction input avec comme parametre "entrer une case (entre 1 et 9)"
-        #assigner a x et y le retour de la fonction trouverCoord avec comme parametre choix
+        #assigner à choix, le str du retour de la fonction input avec comme parametre "entrer une case (entre 1 et 9)"
+        #tant que le retour de la fonction trouverCoord avec comme parametre choix est egale a ValueError
+            #afficher "erreur: entrez un caractere numerique entre 1 et 9"
+            #assigner à choix, le str du retour de la fonction input avec comme parametre "entrer une case (entre 1 et 9)"
+        #assigner à x et y le retour de la fonction trouverCoord avec comme parametre choix
         #tant que le retour de la fonction tab avec comme parametre x et y est egale a 'X' ou que le retour de la fonction
-        # tab avec comme parametre x et y est egale a 'O' ou que le retour de la fonction trouverCoord avec comme parametre choix est egale a ValueError
+        #  tab avec comme parametre x et y est egale a 'O' ou que le retour de la fonction trouverCoord avec comme parametre choix est egale a ValueError
             #afficher "erreur: entrez un chiffre entre 1 et 9 non utilisé"
-            #assigner a choix, le str du retour de la fonction input avec comme parametre "entrer une case (entre 1 et 9)"
-            #assigner a x et y le retour de la fonction trouverCoord avec comme parametre choix
-        #assigner a la liste tab a l'indice [x][y] 'X'
+            #assigner à choix, le str du retour de la fonction input avec comme parametre "entrer une case (entre 1 et 9)"
+            #assigner à x et y le retour de la fonction trouverCoord avec comme parametre choix
+        #assigner à la liste tab a l'indice [x][y] 'X'
         #afficher la concatenation de "tu as joué sur la case" et la varaiable choix
         ##executer la fonction afficherMorpion avec comme parametre tab et 3
         #incrementer la variable countTour de 1
@@ -131,14 +134,14 @@
     #sinon
         #changer isFirst a true
     #afficher "au tour de l'IA"
-    #assigner a choixCPU, le str du retour de la fonction randint avec comme parametre 1 et 9
-    #assigner a x et y le retour de la fonction trouverCoord avec comme parametre choixCPU
+    #assigner à choixCPU, le str du retour de la fonction randint avec comme parametre 1 et 9
+    #assigner à x et y le retour de la fonction trouverCoord avec comme parametre choixCPU
     #tant que 
     #tant que le retour de la fonction tab avec comme parametre x et y est egale a 'X' ou que le retour de la fonction
         # tab avec comme parametre x et y est egale a 'O' ou que le retour de la fonction trouverCoord avec comme parametre choix est egale a ValueError
-        #assigner a choixCPU, le str du retour de la fonction randint avec comme parametre 1 et 9
-         #assigner a x et y le retour de la fonction trouverCoord avec comme parametre choixCPU
-    #assigner a la liste tab a l'indice [x][y] 'O'
+        #assigner à choixCPU, le str du retour de la fonction randint avec comme parametre 1 et 9
+         #assigner à x et y le retour de la fonction trouverCoord avec comme parametre choixCPU
+    #assigner à la liste tab a l'indice [x][y] 'O'
     #afficher la concatenation de "le CPU a joué sur la case " et choix
     ##executer la fonction afficherMorpion avec comme parametre tab et 3
     #incrementer la variable countTour de 1
