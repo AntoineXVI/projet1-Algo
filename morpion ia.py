@@ -152,26 +152,28 @@ while winCpu == False and winUser == False:
         print("Le CPU a joué sur la case " + choixCpu + "\n" )
         afficherMorpion(tab, 3)
         countTour = countTour + 1
+        cpuFirst = False
     else:
-        isFirst = False
-
-    #assigner a alea, un nombre entre 1 et 9
-    choixCpu = str(random.randint(1,9))
-    x,y = trouverCoord(choixCpu)
-    while (tab[x][y] == 'X') or (tab[x][y] == 'O') or trouverCoord == ValueError:
-        choixCpu = str(random.randint(1,9))
-        x,y = trouverCoord(choixCpu)
-    tab[x][y] = 'O'
-    print("Le CPU a joué sur la case " + choixCpu + "\n" )
-    afficherMorpion(tab, 3)
-    countTour = countTour + 1
-    if isWin(tab, x, y) == 'O':
-        winCpu == True
-        print("Dommage, tu as perdu\n")
-        break
-    else:
-        if countTour >= 9:
-            print("Egalité.\n")
+        if tab[1][1] != 'X':
+            tab[1][1] = 'O'
+        else:
+            #assigner a alea, un nombre entre 1 et 9
+            choixCpu = str(random.randint(1,9))
+            x,y = trouverCoord(choixCpu)
+            while (tab[x][y] == 'X') or (tab[x][y] == 'O'):
+                choixCpu = str(random.randint(1,9))
+                x,y = trouverCoord(choixCpu)
+            tab[x][y] = 'O'
+        print("Le CPU a joué sur la case " + choixCpu + "\n" )
+        afficherMorpion(tab, 3)
+        countTour = countTour + 1
+        if isWin(tab, x, y) == 'O':
+            winCpu == True
+            print("Dommage, tu as perdu\n")
             break
-        print("Fin du tour numero " + str(countTour) + ":\n")
+        else:
+            if countTour >= 9:
+                print("Egalité.\n")
+                break
+            print("Fin du tour numero " + str(countTour) + ":\n")
 print("Fin de Partie\n")
