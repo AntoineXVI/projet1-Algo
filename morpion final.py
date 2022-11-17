@@ -114,8 +114,11 @@ while winCpu == False and winUser == False:
         #assigner a choix, la chaine choisie par l'utilisateur
         print("à ton tour\n")
         choix = str(input("entrez une case (de la case 1 a la case 9)\n"))
+        while trouverCoord(choix) == ValueError:
+            print("erreur: entrez un caractere numerique entre 1 et 9")
+            choix = str(input("entrez une case (de la case 1 a la case 9)\n"))
         x,y = trouverCoord(choix)
-        while (tab[x][y] == 'X') or (tab[x][y] == 'O') or trouverCoord == ValueError:
+        while (tab[x][y] == 'X') or (tab[x][y] == 'O') or trouverCoord(choix) == ValueError:
             print("erreur: entrez un chiffre entre 1 et 9 non utilisé")
             choix = str(input("entrez une case (de la case 1 a la case 9)\n"))
             x,y = trouverCoord(choix)
