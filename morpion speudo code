@@ -51,101 +51,104 @@
         #alors retourner ValuesError
     
 
-#faire une fonction iswin qui renvoie les coordonnees x et y avec comme parametre tab xchoix et ychoix
-def isWin(tab, xChoix, yChoix):
-    #test en ligne
-    if yChoix == 0:
-        if (tab[xChoix][yChoix + 1] == tab[xChoix][yChoix])and (tab[xChoix][yChoix + 2] == tab[xChoix][yChoix]) :
-            return tab[xChoix][yChoix]
-    elif yChoix == 1:
-        if (tab[xChoix][yChoix - 1] == tab[xChoix][yChoix])and (tab[xChoix][yChoix + 1] == tab[xChoix][yChoix]) :
-            return tab[xChoix][yChoix]
-    elif yChoix == 2:
-        if (tab[xChoix][yChoix - 2] == tab[xChoix][yChoix])and (tab[xChoix][yChoix - 1] == tab[xChoix][yChoix]) :
-            return tab[xChoix][yChoix]
-    #test en colonne 
-    if xChoix == 0:
-        if (tab[xChoix + 1][yChoix] == tab[xChoix][yChoix])and (tab[xChoix + 2][yChoix] == tab[xChoix][yChoix]) :
-            return tab[xChoix][yChoix]
-    elif xChoix == 1:
-        if (tab[xChoix - 1][yChoix ] == tab[xChoix][yChoix])and (tab[xChoix  + 1][yChoix] == tab[xChoix][yChoix]) :
-            return tab[xChoix][yChoix]
-    elif xChoix == 2:
-        if (tab[xChoix - 2][yChoix] == tab[xChoix][yChoix])and (tab[xChoix - 1][yChoix] == tab[xChoix][yChoix]) :
-            return tab[xChoix][yChoix]
-    #test en diagonale
-    if xChoix == 1 and yChoix == 1:
-        if tab[0][0] == tab[xChoix][yChoix] and tab[2][2] == tab[1][1]:
-            return tab[xChoix][yChoix]
-        elif tab[0][2] == tab[xChoix][yChoix] and tab[2][0] == tab[1][1]:
-            return tab[xChoix][yChoix]
+#faire une fonction iswin qui renvoie les coordonnees x et y avec comme parametre tab ,xchoix et ychoix
+
+    #si ychoix est egale a 0
+        #si le retour de la fontion tab avec comme parametre xchoix et ychoix+1 est egale au retour de la fonction tab avec comme parametre xchoix et ychoix 
+        # et le retour de la fontion tab avec comme parametre xchoix et ychoix+2 est egale au retour de la fonction tab avec comme parametre xchoix et ychoix
+            #retourner le retour de la fontion tab avec comme parametre xchoix et ychoix
+    #sinon si ychoix est egale a 1
+        #si le retour de la fontion tab avec comme parametre xchoix et ychoix-1 est egale au retour de la fonction tab avec comme parametre xchoix et ychoix 
+        # et le retour de la fontion tab avec comme parametre xchoix et ychoix+1 est egale au retour de la fonction tab avec comme parametre xchoix et ychoix
+            #retourner le retour de la fontion tab avec comme parametre xchoix et ychoix
+    #sinon si ychoix est egale a 2
+        #si le retour de la fontion tab avec comme parametre xchoix et ychoix-2 est egale au retour de la fonction tab avec comme parametre xchoix et ychoix 
+        # et le retour de la fontion tab avec comme parametre xchoix et ychoix-1 est egale au retour de la fonction tab avec comme parametre xchoix et ychoix
+            #retourner le retour de la fontion tab avec comme parametre xchoix et ychoix
+
+
+    #si xchoix est egale a 0
+        #si le retour de la fontion tab avec comme parametre xchoix+1 et ychoix est egale au retour de la fonction tab avec comme parametre xchoix et ychoix 
+        # et le retour de la fontion tab avec comme parametre xchoix+2 et ychoix est egale au retour de la fonction tab avec comme parametre xchoix et ychoix
+            #retourner le retour de la fontion tab avec comme parametre xchoix et ychoix
+    #sinon si xchoix est egale a 1
+        #si le retour de la fontion tab avec comme parametre xchoix-1 et ychoix est egale au retour de la fonction tab avec comme parametre xchoix et ychoix 
+        # et le retour de la fontion tab avec comme parametre xchoix+1 et ychoix est egale au retour de la fonction tab avec comme parametre xchoix et ychoix
+            #retourner le retour de la fontion tab avec comme parametre xchoix et ychoix
+    #sinon si xchoix est egale a 2
+        #si le retour de la fontion tab avec comme parametre xchoix-2 et ychoix est egale au retour de la fonction tab avec comme parametre xchoix et ychoix 
+        # et le retour de la fontion tab avec comme parametre xchoix-1 et ychoix est egale au retour de la fonction tab avec comme parametre xchoix et ychoix
+            #retourner le retour de la fontion tab avec comme parametre xchoix et ychoix
+        
+
+    #si xchoix est egale a 1 et ychoix est egale a 1
+        #si le retour de la fontion tab avec comme parametre 0 et 0 est egale au retour de la fonction tab avec comme parametre xchoix et ychoix 
+        # et le retour de la fontion tab avec comme parametre 2 et 2 est egale au retour de la fonction tab avec comme parametre xchoix et ychoix
+            #retourner le retour de la fontion tab avec comme parametre xchoix et ychoix
+        #sinon si le retour de la fontion tab avec comme parametre 0 et 2 est egale au retour de la fonction tab avec comme parametre xchoix et ychoix 
+        # et le retour de la fontion tab avec comme parametre 2 et 0 est egale au retour de la fonction tab avec comme parametre xchoix et ychoix
+            #retourner le retour de la fontion tab avec comme parametre xchoix et ychoix
 
 
 
 #initalise la variable WinCpu a False
-winCpu = False
 #initalise la variable winUser a False
-winUser = False
 #initalise la variable isFirst a True
-isFirst = True
 #initalise la variable countTour a 0
-countTour = 0
 #initialise la liste tab vide
-tab = []
-morpionVide(tab, 3)
-afficherMorpion(tab, 3)
+#executer la fonction afficherMorpion avec comme parametre tab et 3
 #assigner a alea, un nombre entre 1 et 2
-alea = random.randint(1,2)
-if alea == 1:
-    print("tu joues en premier\n")
-else:
-    print("tu joues en deuxime\n")
-    isFirst = False
-print("tu joues les X\n") 
+#si alea est egale a 1
+    #afficher "tu joue en premier"
+#sinon
+    #alors afficher "tu joues en deuxime"
+    #assigner isFirst a False
+#afficher "tu joues les X"
 
 #tant que WinCpu et winUser sont egaux a faux
-while winCpu == False and winUser == False:
-    if isFirst != False:
-        #assigner a choix, la chaine choisie par l'utilisateur
-        print("à ton tour\n")
-        choix = str(input("entrez une case (de la case 1 a la case 9)\n"))
-        x,y = trouverCoord(choix)
-        while (tab[x][y] == 'X') or (tab[x][y] == 'O') or trouverCoord == ValueError:
-            print("erreur: entrez un chiffre entre 1 et 9 non utilisé")
-            choix = str(input("entrez une case (de la case 1 a la case 9)\n"))
-            x,y = trouverCoord(choix)
-        tab[x][y] = 'X'
-        print("tu as joué sur la case " + choix + "\n" )
-        afficherMorpion(tab, 3)
-        countTour = countTour + 1
-        if isWin(tab, x, y) == 'X':
-            winUser == True
-            print("Bravo, tu as gagné\n")
-            break
-        else:
-            if countTour >= 9:
-                print("Egalité.\n")
-                break
-    else:
-        isFirst = True
-    print("au tour de l'IA\n")
-    #assigner a alea, un nombre entre 1 et 9
-    choixCpu = str(random.randint(1,9))
-    x,y = trouverCoord(choixCpu)
-    while (tab[x][y] == 'X') or (tab[x][y] == 'O') or trouverCoord == ValueError:
-        choixCpu = str(random.randint(1,9))
-        x,y = trouverCoord(choixCpu)
-    tab[x][y] = 'O'
-    print("Le CPU a joué sur la case " + choixCpu + "\n" )
-    afficherMorpion(tab, 3)
-    countTour = countTour + 1
-    if isWin(tab, x, y) == 'O':
-        winCpu == True
-        print("Dommage, tu as perdu\n")
-        break
-    else:
-        if countTour >= 9:
-            print("Egalité.\n")
-            break
-        print("Fin du tour numero " + str(countTour) + ":\n")
-print("Fin de Partie\n")
+    #si isFirst est different de False
+        #afficher "a ton tour"
+        #assigner a choix, le str du retour de la fonction input avec comme parametre "entrer une case (entre 1 et 9)"
+        #assigner a x et y le retour de la fonction trouverCoord avec comme parametre choix
+        #tant que le retour de la fonction tab avec comme parametre x et y est egale a 'X' ou que le retour de la fonction
+        # tab avec comme parametre x et y est egale a 'O' ou que le retour de la fonction trouverCoord avec comme parametre choix est egale a ValueError
+            #afficher "erreur: entrez un chiffre entre 1 et 9 non utilisé"
+            #assigner a choix, le str du retour de la fonction input avec comme parametre "entrer une case (entre 1 et 9)"
+            #assigner a x et y le retour de la fonction trouverCoord avec comme parametre choix
+        #assigner a la liste tab a l'indice [x][y] 'X'
+        #afficher la concatenation de "tu as joué sur la case" et la varaiable choix
+        ##executer la fonction afficherMorpion avec comme parametre tab et 3
+        #incrementer la variable countTour de 1
+        
+        #si le retour de la fonction isWin avec comme parametre tab, x et y est egale a 'X'
+            #changer winUser en True
+            #afficher "bravo, tu as gagné"
+            #sortir de la boucle
+        #sinon 
+            #si countTour est inferieur ou egale a 9
+                #alors afficher "egalité"
+                #sortir de la boucle
+    #sinon
+        #changer isFirst a true
+    #afficher "au tour de l'IA"
+    #assigner a choixCPU, le str du retour de la fonction randint avec comme parametre 1 et 9
+    #assigner a x et y le retour de la fonction trouverCoord avec comme parametre choixCPU
+    #tant que 
+    #tant que le retour de la fonction tab avec comme parametre x et y est egale a 'X' ou que le retour de la fonction
+        # tab avec comme parametre x et y est egale a 'O' ou que le retour de la fonction trouverCoord avec comme parametre choix est egale a ValueError
+        #assigner a choixCPU, le str du retour de la fonction randint avec comme parametre 1 et 9
+         #assigner a x et y le retour de la fonction trouverCoord avec comme parametre choixCPU
+    #assigner a la liste tab a l'indice [x][y] 'O'
+    #afficher la concatenation de "le CPU a joué sur la case " et choix
+    ##executer la fonction afficherMorpion avec comme parametre tab et 3
+    #incrementer la variable countTour de 1
+    #si le retour de la fonction isWin avec comme parametre tab , x et y est egale a '0'
+        #changer la variable winCpu en true
+        #afficher "Dommage, tu as perdu\n"
+        #sortir de la boucle
+    #sinon
+        #si countTour est superieur ou egale a 9
+            #afficher "egalité"
+            #sortir de la boucle
+        #afficher la concatenation de "Fin du tour numero " et du str de countTour
+#afficher "fin de partie"
