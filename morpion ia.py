@@ -105,7 +105,7 @@ alea = random.randint(1,2)
 if alea == 1:
     print("tu joues en premier\n")
 else:
-    print("tu joues en deuxime\n")
+    print("tu joues en deuxieme\n")
     isFirst = False
     cpuFirst = True
 print("tu joues les X\n") 
@@ -164,19 +164,31 @@ while winCpu == False and winUser == False:
             else: #si X joue au milieu mais pas en premier tour
                 choixCpu = str(random.randint(1,9))
                 x,y = trouverCoord(choixCpu)
-                
                 while (trouverCoord(choixCpu) != (0, 0)) and (trouverCoord(choixCpu) != (0, 2)) and (trouverCoord(choixCpu) != (2, 0)) and (trouverCoord(choixCpu) != (2, 2)) :
                     choixCpu = str(random.randint(1,9))
                     x,y = trouverCoord(choixCpu)
+                    if tab [x][y] == 'O' or tab [x][y] == 'X':
+                        print("oui")
+                        break
                 tab[x][y] = 'O'
                 print("Le CPU a joué sur la case " + choixCpu + "\n" )
                 afficherMorpion(tab, 3)
         elif tab[1][1] == 'X': 
             if  countTour == 3:
                 x,y = trouverCoord(str(10 - int(choixCpu)))
-                tab[y][x] = 'O'
+                tab[x][y] = 'O'
                 print("Le CPU a joué sur la case " + (str(10 - int(choixCpu))) + "\n" )
                 afficherMorpion(tab, 3)
+    if isWin(tab, x, y) == 'O':
+        winCpu == True
+        print("Dommage, tu as perdu\n")
+        break
+    else:
+        if countTour >= 9:
+            print("Egalité.\n")
+            break
+        print("Fin du tour\n")
+print("Fin de Partie\n")
 
            
 
