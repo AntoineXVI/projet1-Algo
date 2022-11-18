@@ -140,7 +140,7 @@ while winCpu == False and winUser == False:
     else:
         isFirst = True
     
-    if cpuFirst == True:
+    if cpuFirst == True or (countTour == 1 and tab[1][1] == 'X'):
         countTour = countTour + 1
         print("au tour de l'IA - Tour numero " + str(countTour) + "\n")
         #assigner a choixCpu, un nombre entre 1 et 9
@@ -150,27 +150,43 @@ while winCpu == False and winUser == False:
             choixCpu = str(random.randint(1,9))
             x,y = trouverCoord(choixCpu)
         tab[x][y] = 'O'
-        firstMouvCpu = choixCpu
         print("Le CPU a joué sur la case " + choixCpu + "\n" )
         afficherMorpion(tab, 3)
         cpuFirst = False
     else:
         countTour = countTour + 1
         print("au tour de l'IA - Tour numero " + str(countTour) + "\n")
-        if tab[1][1] != 'X' and tab[1][1] != 'O':
-            tab[1][1] = 'O'
-            print("Le CPU a joué sur la case 5\n" )
-            afficherMorpion(tab, 3)
-        elif tab[1][1] == 'X':
-             #assigner a choixCpu, un nombre entre 1 et 9
-            choixCpu = str(random.randint(1,9))
-            x,y = trouverCoord(firstMouvCpu)
-            tab[y][x] = 'O'
+        if tab[1][1] != 'X': #si X joue en premier au milieu
+            if countTour == 2 :
+                tab[1][1] = 'O'
+                print("Le CPU a joué sur la case 5\n" )
+                afficherMorpion(tab, 3)
+            else: #si X joue au milieu mais pas en premier tour
+                choixCpu = str(random.randint(1,9))
+                x,y = trouverCoord(choixCpu)
+                
+                while (trouverCoord(choixCpu) != (0, 0)) and (trouverCoord(choixCpu) != (0, 2)) and (trouverCoord(choixCpu) != (2, 0)) and (trouverCoord(choixCpu) != (2, 2)) :
+                    choixCpu = str(random.randint(1,9))
+                    x,y = trouverCoord(choixCpu)
+                tab[x][y] = 'O'
+                print("Le CPU a joué sur la case " + choixCpu + "\n" )
+                afficherMorpion(tab, 3)
+        elif tab[1][1] == 'X': 
+            if  countTour == 3:
+                x,y = trouverCoord(str(10 - int(choixCpu)))
+                tab[y][x] = 'O'
+                print("Le CPU a joué sur la case " + (str(10 - int(choixCpu))) + "\n" )
+                afficherMorpion(tab, 3)
+
+           
 
 
 
 
 
+
+
+'''
             #assigner a choixCpu, un nombre entre 1 et 9
             choixCpu = str(random.randint(1,9))
             x,y = trouverCoord(choixCpu)
@@ -190,3 +206,4 @@ while winCpu == False and winUser == False:
             break
         print("Fin du tour\n")
 print("Fin de Partie\n")
+'''
