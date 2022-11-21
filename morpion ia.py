@@ -88,37 +88,69 @@ def isWin(tab, xChoix, yChoix):
 
 def cpuBlock(tab): #fonction qui permet de savoir si le joueur a deux X aligné et retourne la case joué si oui, ou false sinon
     #test cases impair
-    if tab[0][0] == 'X' and tab[2][2] == 'X' or tab[1][0] == 'X' and tab[1][2] == 'X' or tab[2][1] == 'X' and tab[1][2] == 'X':
+    if (tab[0][0] == 'X' and tab[2][2] == 'X' or tab[1][0] == 'X' and tab[1][2] == 'X' or tab[2][1] == 'X' and tab[1][2] == 'X') and tab[1][1] == ' ':
             tab[1][1] = 'O'
             return '5'
-    elif tab[1][1] == 'X' and tab[2][2] == 'X' or tab[0][1] == 'X' and tab[0][2] == 'X' or tab[2][0] == 'X' and tab[1][0] == 'X':
+    elif (tab[1][1] == 'X' and tab[2][2] == 'X' or tab[0][1] == 'X' and tab[0][2] == 'X' or tab[2][0] == 'X' and tab[1][0] == 'X') and tab[0][0] == ' ':
             tab[0][0] = 'O'
             return '1'
-    elif tab[1][1] == 'X' and tab[2][0] == 'X' or tab[0][0] == 'X' and tab[0][1] == 'X' or tab[1][2] == 'X' and tab[2][2] == 'X':
+    elif (tab[1][1] == 'X' and tab[2][0] == 'X' or tab[0][0] == 'X' and tab[0][1] == 'X' or tab[1][2] == 'X' and tab[2][2] == 'X') and tab[0][2] == ' ':
         tab[0][2] = 'O'
         return '3'
-    elif tab[1][1] == 'X' and tab[0][2]== 'X' or tab[2][1] == 'X' and tab[2][2] == 'X' or tab[0][0] == 'X' and tab[1][0] == 'X':
+    elif (tab[1][1] == 'X' and tab[0][2]== 'X' or tab[2][1] == 'X' and tab[2][2] == 'X' or tab[0][0] == 'X' and tab[1][0] == 'X') and tab[2][0] == ' ':
         tab[2][0] = 'O'
         return '7'
-    elif tab[1][1] == 'X' and tab[0][0]== 'X' or tab[2][0] == 'X' and tab[2][1] == 'X' or tab[0][2] == 'X' and tab[1][2] == 'X':
+    elif (tab[1][1] == 'X' and tab[0][0]== 'X' or tab[2][0] == 'X' and tab[2][1] == 'X' or tab[0][2] == 'X' and tab[1][2] == 'X') and tab[2][2] == ' ':
         tab[2][2] = 'O'
         return '9'
     #test cases pair
-    elif tab[0][0] == 'X' and tab[0][2] == 'X' or tab[1][1] == 'X' and tab[2][1] == 'X':
+    elif (tab[0][0] == 'X' and tab[0][2] == 'X' or tab[1][1] == 'X' and tab[2][1] == 'X') and tab[0][1] == ' ':
             tab[0][1] = 'O'
             return '2'
-    elif tab[1][1] == 'X' and tab[1][2] == 'X' or tab[2][0] == 'X' and tab[3][0] == 'X':
+    elif (tab[1][1] == 'X' and tab[1][2] == 'X' or tab[2][0] == 'X' and tab[1][0] == 'X') and tab[1][0] == ' ':
             tab[1][0] = 'O'
             return '4'
-    elif tab[1][0] == 'X' and tab[1][1] == 'X' or tab[2][2] == 'X' and tab[0][2] == 'X':
+    elif (tab[1][0] == 'X' and tab[1][1] == 'X' or tab[2][2] == 'X' and tab[0][2] == 'X') and tab[1][2] == ' ':
             tab[1][2] = 'O'
             return '6'
-    elif tab[2][0] == 'X' and tab[2][1] == 'X' or tab[0][1] == 'X' and tab[1][1] == 'X':
+    elif (tab[2][0] == 'X' and tab[2][1] == 'X' or tab[0][1] == 'X' and tab[1][1] == 'X') and tab[2][1] == ' ':
             tab[2][1] = 'O'
             return '8'
     else:
-        return False
+        return "-1"
 
+def cpuWin(tab): #fonction qui permet de savoir si le joueur a deux X aligné et retourne la case joué si oui, ou false sinon
+    #test cases impair
+    if (tab[0][0] == 'O' and tab[2][2] == 'O' or tab[1][0] == 'O' and tab[1][2] == 'O' or tab[2][1] == 'O' and tab[1][2] == 'O') and tab[1][1] == ' ':
+            tab[1][1] = 'O'
+            return '5'
+    elif (tab[1][1] == 'O' and tab[2][2] == 'O' or tab[0][1] == 'O' and tab[0][2] == 'O' or tab[2][0] == 'O' and tab[1][0] == 'O') and tab[0][0] == ' ':
+            tab[0][0] = 'O'
+            return '1'
+    elif (tab[1][1] == 'O' and tab[2][0] == 'O' or tab[0][0] == 'O' and tab[0][1] == 'O' or tab[1][2] == 'O' and tab[2][2] == 'O') and tab[0][2] == ' ':
+        tab[0][2] = 'O'
+        return '3'
+    elif (tab[1][1] == '' and tab[0][2]== '' or tab[2][1] == '' and tab[2][2] == '' or tab[0][0] == '' and tab[1][0] == '') and tab[2][0] == ' ':
+        tab[2][0] = 'O'
+        return '7'
+    elif (tab[1][1] == 'O' and tab[0][0]== 'O' or tab[2][0] == 'O' and tab[2][1] == 'O' or tab[0][2] == 'O' and tab[1][2] == 'O') and tab[2][2] == ' ':
+        tab[2][2] = 'O'
+        return '9'
+    #test cases pair
+    elif (tab[0][0] == 'O' and tab[0][2] == 'O' or tab[1][1] == 'O' and tab[2][1] == 'O') and tab[0][1] == ' ':
+            tab[0][1] = 'O'
+            return '2'
+    elif (tab[1][1] == 'O' and tab[1][2] == 'O' or tab[2][0] == 'O' and tab[1][0] == 'O') and tab[1][0] == ' ':
+            tab[1][0] = 'O'
+            return '4'
+    elif (tab[1][0] == 'O' and tab[1][1] == 'O' or tab[2][2] == 'O' and tab[0][2] == 'O') and tab[1][2] == ' ':
+            tab[1][2] = 'O'
+            return '6'
+    elif (tab[2][0] == 'O' and tab[2][1] == 'O' or tab[0][1] == 'O' and tab[1][1] == 'O') and tab[2][1] == ' ':
+            tab[2][1] = 'O'
+            return '8'
+    else:
+        return "-1"
 
 #initalise la variable WinCpu a False
 winCpu = False
@@ -174,12 +206,13 @@ while winCpu == False and winUser == False:
     else:
         isFirst = True
     
-    if cpuFirst == True or (countTour == 1 and tab[1][1] == 'X'):
+    if cpuFirst == True or (countTour == 1 and tab[1][1] == 'X'): #si le cpu commence ou joue en deuxieme et le joueur vient de jouer au milieu
         countTour = countTour + 1
         print("au tour de l'IA - Tour numero " + str(countTour) + "\n")
         #assigner a choixCpu, un nombre entre 1 et 9
         choixCpu = str(random.randint(1,9))
         x,y = trouverCoord(choixCpu)
+        #jouer sur un des 4 coins
         while (trouverCoord(choixCpu) != (0, 0)) and (trouverCoord(choixCpu) != (0, 2)) and (trouverCoord(choixCpu) != (2, 0)) and (trouverCoord(choixCpu) != (2, 2)):
             choixCpu = str(random.randint(1,9))
             x,y = trouverCoord(choixCpu)
@@ -187,41 +220,46 @@ while winCpu == False and winUser == False:
         print("Le CPU a joué sur la case " + choixCpu + "\n" )
         afficherMorpion(tab, 3)
         cpuFirst = False
-    else:
-        if cpuBlock(tab) != False:
+    else: #sinon
+        if cpuWin(tab) != '-1': #si le CPU a 2 ronds alignés
+            print("win")
+            choixCpu = cpuWin(tab)
+            print("Le CPU a joué sur la case " + choixCpu + "\n" )
+            afficherMorpion(tab, 3)
+        elif cpuBlock(tab) != '-1': #si le joueur a 2 croix alignés
+            print("lose")
             choixCpu = cpuBlock(tab)
             print("Le CPU a joué sur la case " + choixCpu + "\n" )
             afficherMorpion(tab, 3)
-        else:
+        else: #sinon
             countTour = countTour + 1
             print("au tour de l'IA - Tour numero " + str(countTour) + "\n")
-            if tab[1][1] != 'X': #si X ne joue pas au milieu 
-                if countTour == 2 : #si X ne joue pas au milieu au premier tour
+            if tab[1][1] != 'X' and countTour == 2 : #si X ne joue pas au milieu au premier tour
                     tab[1][1] = 'O'
                     print("Le CPU a joué sur la case 5\n" )
                     afficherMorpion(tab, 3)
-                else: #si X ne joue pas au milieu mais pas en premier tour
+            elif tab[1][1] != 'X': #si X ne joue pas au milieu mais pas en premier tour
+                
+                choixCpu = str(random.randint(1,9))
+                x,y = trouverCoord(choixCpu)
+                while ((trouverCoord(choixCpu) != (0, 0)) and (trouverCoord(choixCpu) != (0, 2)) and (trouverCoord(choixCpu) != (2, 0)) and (trouverCoord(choixCpu) != (2, 2))) or (tab[x][y] == 'O' or tab[x][y] == 'X') :
                     choixCpu = str(random.randint(1,9))
                     x,y = trouverCoord(choixCpu)
-                    while ((trouverCoord(choixCpu) != (0, 0)) and (trouverCoord(choixCpu) != (0, 2)) and (trouverCoord(choixCpu) != (2, 0)) and (trouverCoord(choixCpu) != (2, 2))) or (tab[x][y] == 'O' or tab[x][y] == 'X') :
-                        choixCpu = str(random.randint(1,9))
-                        x,y = trouverCoord(choixCpu)
-                    print("oui") 
-                    tab[x][y] = 'O'
-                    print("Le CPU a joué sur la case " + choixCpu + "\n" )
-                    afficherMorpion(tab, 3)
-            elif tab[1][1] == 'X': 
-                if  countTour == 3:
-                    x,y = trouverCoord(str(10 - int(choixCpu)))
+                tab[x][y] = 'O'
+                print("Le CPU a joué sur la case " + choixCpu + "\n" )
+                afficherMorpion(tab, 3)
+            elif tab[1][1] == 'X': #si X joue au milieu 
+                if  countTour == 3: #si X joue au milieu au 3eme tour
+                    x,y = trouverCoord(str(10 - int(choixCpu))) #jouer sur le coin opposé
                     tab[x][y] = 'O'
                     print("Le CPU a joué sur la case " + (str(10 - int(choixCpu))) + "\n" )
                     afficherMorpion(tab, 3)
-    if isWin(tab, x, y) == 'O':
+    if isWin(tab, x, y) == 'O': #si cpu a 3 ronds aligné
         winCpu == True
         print("Dommage, tu as perdu\n")
         break
     else:
-        if countTour >= 9:
+        if countTour >= 9: #si le nombre de tours supérieur a 9 = plateau rempli
             print("Egalité.\n")
             break
         print("Fin du tour\n")
