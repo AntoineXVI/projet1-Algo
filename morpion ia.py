@@ -4,7 +4,7 @@ import random
 def morpionVide(tab, longueur): #crée un tableau vide
     #pour i allant de 0 a longeur 
     for i in range(longueur):
-        #ajouter une liste "N" multiplié par la longueur
+        #ajouter une liste " " multiplié par la longueur
         tab.append([" "] * longueur)
     #pour k allant de 0 jusqu'a la longueur du tableau
 
@@ -13,7 +13,7 @@ def afficherMorpion(tab, longueur): #affiche le tableau
     #pour k allant de 0 jusqu'a la longueur du tableau
     for k in range(longueur): 
         #afficher le tableau
-        print(tab[k])
+        print('|'.join(str(e) for e in tab[k]))
 
 def trouverCoord(choix):
     if choix == '1':
@@ -78,14 +78,13 @@ def isWin(tab, xChoix, yChoix):
         if (tab[xChoix - 2][yChoix] == tab[xChoix][yChoix])and (tab[xChoix - 1][yChoix] == tab[xChoix][yChoix]) :
             return tab[xChoix][yChoix]
     #test en diagonale
-    if xChoix == 1 and yChoix == 1:
-        if tab[0][0] == tab[xChoix][yChoix] and tab[2][2] == tab[1][1]:
+    if tab[0][0] == tab[xChoix][yChoix] and tab[1][1] == tab[xChoix][yChoix] and tab[2][2] == tab[xChoix][yChoix]:
             return tab[xChoix][yChoix]
-        if tab[0][2] == tab[xChoix][yChoix] and tab[2][0] == tab[1][1]:
+    elif tab[0][2] == tab[xChoix][yChoix] and tab[1][1] == tab[xChoix][yChoix] and tab[2][0] == tab[xChoix][yChoix]:
             return tab[xChoix][yChoix]
 
 
-def cpuBlock(tab): #fonction qui permet de savoir si le joueur a deux X aligné et retourne la case joué si oui, ou false sinon
+def cpuBlock(tab): #fonction qui permet de savoir si le joueur a deux X aligné et retourne la case joué si oui, ou sinon retourne "NON"
     #test cases impairs
     if (tab[2][0] == 'X' and tab[0][2] == 'X' or tab[0][0] == 'X' and tab[2][2] == 'X' or tab[1][0] == 'X' and tab[1][2] == 'X' or tab[2][1] == 'X' and tab[1][2] == 'X') and tab[1][1] == ' ':
         return '5'
@@ -109,7 +108,7 @@ def cpuBlock(tab): #fonction qui permet de savoir si le joueur a deux X aligné 
     else:
         return "NON"
 
-def cpuWin(tab): #fonction qui permet de savoir si le joueur a deux X aligné et retourne la case joué si oui, ou false sinon
+def cpuWin(tab): #fonction qui permet de savoir si le joueur a deux X aligné et retourne la case joué si oui, ou sinon retourne "NON"
     #test cases impairs
     if (tab[2][0] == 'O' and tab[0][2] == 'O' or tab[0][0] == 'O' and tab[2][2] == 'O' or tab[1][0] == 'O' and tab[1][2] == 'O' or tab[2][1] == 'O' and tab[1][2] == 'O') and tab[1][1] == ' ':
         return '5'
@@ -217,22 +216,11 @@ while winCpu == False and winUser == False:
             afficherMorpion(tab, 3)
         else: #sinon
             if tab[1][1] != 'X':    #si X ne joue pas au milieu
-                if countTour == 2 : #si X ne joue pas au milieu au deuxieme tour
+                if countTour == 2 or countTour == 5: #si X ne joue pas au milieu au deuxieme cinquieme tour
                     tab[1][1] = 'O'
                     print("Le CPU a joué sur la case 5\n" )
                     afficherMorpion(tab, 3)
                 elif countTour == 3: #si X ne joue pas au milieu au troisieme tour
-                    
-                    if tab[x][y] == 'X':
-                        choixCpu = str(random.randint(1,9))
-                        x,y = trouverCoord(choixCpu)
-                        while (trouverCoord(choixCpu) != (0, 0)) and (trouverCoord(choixCpu) != (0, 2)) and (trouverCoord(choixCpu) != (2, 0)) and (trouverCoord(choixCpu) != (2, 2)):
-                            choixCpu = str(random.randint(1,9))
-                            x,y = trouverCoord(choixCpu)
-                        tab[x][y] = 'O'
-                    print("Le CPU a joué sur la case " + choixCpu + "\n" )
-                    afficherMorpion(tab, 3)
-                else: #si X ne joue pas au milieu mais pas au deuxieme tour
                     choixCpu = str(random.randint(1,9))
                     x,y = trouverCoord(choixCpu)
                     while tab[x][y] != 'O' :
@@ -240,57 +228,90 @@ while winCpu == False and winUser == False:
                         x,y = trouverCoord(choixCpu)
                     if x == 0 and y == 0:
                         if tab[0][1] == 'X':
-                            choixCpu = str(random.randint([7,9]))
-                            x,y = trouverCoord(choixCpu)
-                            
+                            choixCpu = str(random.choice([7,9]))
+                            x,y = trouverCoord(choixCpu)   
                         elif tab[1][0] == 'X':
-                            choixCpu = str(random.randint([3,9]))
+                            choixCpu = str(random.choice([1,9]))
                             x,y = trouverCoord(choixCpu)
-                            
-                        elif tab[1][1] == 'X':
-                            choixCpu = str(random.randint([3,7]))
+                        else:
+                            choixCpu = str(random.randint(1,9))
                             x,y = trouverCoord(choixCpu)
-                            
+                            while (trouverCoord(choixCpu) != (0, 0)) and (trouverCoord(choixCpu) != (0, 2)) and (trouverCoord(choixCpu) != (2, 0)) and (trouverCoord(choixCpu) != (2, 2)):
+                                choixCpu = str(random.randint(1,9))
+                                x,y = trouverCoord(choixCpu)
+                                if (tab[x][y] != 'X' and tab[x][y] != 'O'):
+                                    break
                     elif x == 2 and y == 0:
                         if tab[2][1] == 'X':
-                            choixCpu = str(random.randint([1,3]))
+                            choixCpu = str(random.choice([1,3]))
                             x,y = trouverCoord(choixCpu)
-                            
                         elif tab[1][0] == 'X':
-                            choixCpu = str(random.randint([3,9]))
+                            choixCpu = str(random.choice([3,9]))
                             x,y = trouverCoord(choixCpu)
-                            
-                        elif tab[1][1] == 'X':
-                            choixCpu = str(random.randint([1,9]))
+                        else:
+                            choixCpu = str(random.randint(1,9))
                             x,y = trouverCoord(choixCpu)
-                            
+                            while (trouverCoord(choixCpu) != (0, 0)) and (trouverCoord(choixCpu) != (0, 2)) and (trouverCoord(choixCpu) != (2, 0)) and (trouverCoord(choixCpu) != (2, 2)):
+                                choixCpu = str(random.randint(1,9))
+                                x,y = trouverCoord(choixCpu)
+                                if (tab[x][y] != 'X' and tab[x][y] != 'O'):
+                                    break
                     elif x == 0 and y == 2:
                         if tab[0][1] == 'X':
-                            choixCpu = str(random.randint([7,9]))
+                            choixCpu = str(random.choice([7,9]))
                             x,y = trouverCoord(choixCpu)
-                            
                         elif tab[1][2] == 'X':
-                            choixCpu = str(random.randint([1,7]))
+                            choixCpu = str(random.choice([1,7]))
                             x,y = trouverCoord(choixCpu)
-                            
-                        elif tab[1][1] == 'X':
-                            choixCpu = str(random.randint([1,9]))
+                        else:
+                            choixCpu = str(random.randint(1,9))
                             x,y = trouverCoord(choixCpu)
-                            
+                            while (trouverCoord(choixCpu) != (0, 0)) and (trouverCoord(choixCpu) != (0, 2)) and (trouverCoord(choixCpu) != (2, 0)) and (trouverCoord(choixCpu) != (2, 2)):
+                                choixCpu = str(random.randint(1,9))
+                                x,y = trouverCoord(choixCpu)
+                                if (tab[x][y] != 'X' and tab[x][y] != 'O'):
+                                    break
                     elif x == 2 and y == 2:
                         if tab[2][1] == 'X':
-                            choixCpu = str(random.randint([1,3]))
-                            x,y = trouverCoord(choixCpu)
-                            
+                            choixCpu = str(random.choice([1,3]))
+                            x,y = trouverCoord(choixCpu)                            
                         elif tab[1][2] == 'X':
-                            choixCpu = str(random.randint([1,7]))
+                            choixCpu = str(random.choice([1,7]))
+                            x,y = trouverCoord(choixCpu)  
+                        else:
+                            choixCpu = str(random.randint(1,9))
                             x,y = trouverCoord(choixCpu)
-                            
-                        elif tab[1][1] == 'X':
-                            choixCpu = str(random.randint([3,7]))
+                            while (trouverCoord(choixCpu) != (0, 0)) and (trouverCoord(choixCpu) != (0, 2)) and (trouverCoord(choixCpu) != (2, 0)) and (trouverCoord(choixCpu) != (2, 2)):
+                                choixCpu = str(random.randint(1,9))
+                                x,y = trouverCoord(choixCpu)
+                                if (tab[x][y] != 'X' and tab[x][y] != 'O'):
+                                    break
+                    else:
+                        choixCpu = str(random.randint(1,9))
+                        x,y = trouverCoord(choixCpu)
+                        while (trouverCoord(choixCpu) != (0, 0)) and (trouverCoord(choixCpu) != (0, 2)) and (trouverCoord(choixCpu) != (2, 0)) and (trouverCoord(choixCpu) != (2, 2)):
+                            choixCpu = str(random.randint(1,9))
                             x,y = trouverCoord(choixCpu)
-                            
+                            if (tab[x][y] != 'X' and tab[x][y] != 'O'):
+                                break
                     tab[x][y] = 'O'
+                    print("Le CPU a joué sur la case " + choixCpu + "\n" )
+                    afficherMorpion(tab, 3)       
+                else: #sinon = si 'x' ne joue pas au milieu au 2/3/5 eme tour
+                    if tab[x][y] == 'X':
+                        choixCpu = str(random.randint(1,9))
+                        x,y = trouverCoord(choixCpu)
+                        while (trouverCoord(choixCpu) != (0, 0)) and (trouverCoord(choixCpu) != (0, 2)) and (trouverCoord(choixCpu) != (2, 0)) and (trouverCoord(choixCpu) != (2, 2)):
+                            choixCpu = str(random.randint(1,9))
+                            x,y = trouverCoord(choixCpu)
+                        tab[x][y] = 'O'
+                    else: 
+                        choixCpu = str(random.randint(1,9))
+                        x,y = trouverCoord(choixCpu)
+                        while (tab[x][y] == 'X') and (tab[x][y] == 'O') or trouverCoord == ValueError:
+                            choixCpu = str(random.randint(1,9))
+                            x,y = trouverCoord(choixCpu)
+                        tab[x][y] = 'O'
                     print("Le CPU a joué sur la case " + choixCpu + "\n" )
                     afficherMorpion(tab, 3)
             elif tab[1][1] == 'X': #si X joue au milieu 
@@ -299,15 +320,15 @@ while winCpu == False and winUser == False:
                     tab[x][y] = 'O'
                     print("Le CPU a joué sur la case " + (str(10 - int(choixCpu))) + "\n" )
                     afficherMorpion(tab, 3)
-            else:
-                choixCpu = str(random.randint(1,9))
-                x,y = trouverCoord(choixCpu)
-                while (tab[x][y] == 'X') or (tab[x][y] == 'O'):
+                else:
                     choixCpu = str(random.randint(1,9))
                     x,y = trouverCoord(choixCpu)
-                tab[x][y] = 'O'
-                print("Le CPU a joué sur la case " + choixCpu + "\n" )
-                afficherMorpion(tab, 3)
+                    while (tab[x][y] == 'X') and (tab[x][y] == 'O') or trouverCoord == ValueError:
+                        choixCpu = str(random.randint(1,9))
+                        x,y = trouverCoord(choixCpu)
+                    tab[x][y] = 'O'
+                    print("Le CPU a joué sur la case " + choixCpu + "\n" )
+                    afficherMorpion(tab, 3)
     if isWin(tab, x, y) == 'O': #si cpu a 3 ronds aligné
         winCpu == True
         print("Dommage, tu as perdu\n")
@@ -317,6 +338,4 @@ while winCpu == False and winUser == False:
             print("Egalité.\n")
             break
         print("Fin du tour\n")
-print("Fin de Partie\n")
-
-           
+print("Fin de Partie\n")         
